@@ -3,84 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis 15 Años</title>
+    <title>Mis 15 Años - Valentina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --color-principal: #d4a373; /* Dorado suave */
+            --color-fondo: #fff5f5;
+            --rosa: #f8ad9d;
+        }
+
         body {
-            background-color: #fff0f5; /* Color bordo */
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            color: #333;
+            background-color: var(--color-fondo);
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #444;
         }
-        h1 { font-family: 'Georgia', serif; color: #d81b60; }
-        #contador {
-            font-size: 2rem;
-            font-weight: bold;
+
+        /* Foto de Portada */
+        .header {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: url('https://via.placeholder.com/500x800') center/cover; /* AQUÍ IRÁ SU FOTO */
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 4rem; 
+            color: var(--color-principal);
+            margin: 20px 0 0 0;
+        }
+
+        .subtitulo { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
+
+        /* Tarjetas de Información */
+        .card {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            width: 85%;
+            max-width: 400px;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
         }
-        .musica-control { margin: 20px; }
-        button { 
-            padding: 10px 20px; 
-            background: #d81b60; 
-            color: white; 
-            border: none; 
-            border-radius: 20px; 
-            cursor: pointer; 
+
+        /* El Contador */
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .time-part { background: var(--rosa); color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
+
+        .btn {
+            background: var(--color-principal);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <h1>¡Mis 15 Años!</h1>
-    <p>Te espero para celebrar este día tan especial.</p>
+    <div class="header"></div>
 
-    <div class="musica-control">
-        <p>Haz clic para escuchar:</p>
-        <button onclick="playMusic()">🎵 Reproducir Música</button>
-        <audio id="miMusica" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <h1>Valentina</h1>
+    <div class="subtitulo">Mis 15 Años</div>
+
+    <div class="card">
+        <p>Acompaña este momento con música</p>
+        <button class="btn" onclick="document.getElementById('track').play()">🎵 REPRODUCIR</button>
+        <audio id="track" loop>
+            <source src="TU_LINK_DE_MUSICA_AQUI.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div id="contador-seccion">
-        <h2 id="mensaje">Faltan solo:</h2>
-        <div id="contador">Cargando...</div>
+    <div class="card">
+        <h3 id="mensaje-reloj">Faltan solo:</h3>
+        <div id="timer">
+            <div class="time-part"><span id="d">00</span><br><small>días</small></div>
+            <div class="time-part"><span id="h">00</span><br><small>hs</small></div>
+            <div class="time-part"><span id="m">00</span><br><small>min</small></div>
+            <div class="time-part"><span id="s">00</span><br><small>seg</small></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📍 Lugar</h3>
+        <p>Salón de Eventos "El Jardín"<br>Av. Principal 123</p>
+        <a href="https://maps.google.com" class="btn">VER MAPA</a>
     </div>
 
     <script>
-        // CONFIGURACIÓN: Cambia esta fecha por la del cumple
-        const fechaEvento = new Date("May 20, 2026 18:00:00").getTime();
+        const eventDate = new Date('2026-05-20T21:00:00').getTime(); // AJUSTA LA FECHA AQUÍ
 
-        const x = setInterval(function() {
-            const ahora = new Date().getTime();
-            const distancia = fechaEvento - ahora;
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
 
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById("contador").innerHTML = dias + "d " + horas + "h "
-            + minutos + "m " + segundos + "s ";
-
-            if (distancia < 0) {
-                clearInterval(x);
-                document.getElementById("mensaje").innerHTML = "";
-                document.getElementById("contador").innerHTML = "¡ES HOY! LLEGÓ EL MOMENTO";
-                document.getElementById("contador").style.color = "#d81b60";
+            if (diff > 0) {
+                document.getElementById("d").innerHTML = d;
+                document.getElementById("h").innerHTML = h;
+                document.getElementById("m").innerHTML = m;
+                document.getElementById("s").innerHTML = s;
+            } else {
+                document.getElementById("mensaje-reloj").innerHTML = "¡ES HOY!";
+                document.getElementById("timer").style.display = "none";
             }
         }, 1000);
-
-        function playMusic() {
-            var audio = document.getElementById("miMusica");
-            audio.play();
-        }
     </script>
 </body>
 </html>
