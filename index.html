@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 15 Años</title>
+    <style>
+        body {
+            background-color: #fff0f5; /* Color bordo */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 { font-family: 'Georgia', serif; color: #d81b60; }
+        #contador {
+            font-size: 2rem;
+            font-weight: bold;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .musica-control { margin: 20px; }
+        button { 
+            padding: 10px 20px; 
+            background: #d81b60; 
+            color: white; 
+            border: none; 
+            border-radius: 20px; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¡Mis 15 Años!</h1>
+    <p>Te espero para celebrar este día tan especial.</p>
+
+    <div class="musica-control">
+        <p>Haz clic para escuchar:</p>
+        <button onclick="playMusic()">🎵 Reproducir Música</button>
+        <audio id="miMusica" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="contador-seccion">
+        <h2 id="mensaje">Faltan solo:</h2>
+        <div id="contador">Cargando...</div>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN: Cambia esta fecha por la del cumple
+        const fechaEvento = new Date("May 20, 2026 18:00:00").getTime();
+
+        const x = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaEvento - ahora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("contador").innerHTML = dias + "d " + horas + "h "
+            + minutos + "m " + segundos + "s ";
+
+            if (distancia < 0) {
+                clearInterval(x);
+                document.getElementById("mensaje").innerHTML = "";
+                document.getElementById("contador").innerHTML = "¡ES HOY! LLEGÓ EL MOMENTO";
+                document.getElementById("contador").style.color = "#d81b60";
+            }
+        }, 1000);
+
+        function playMusic() {
+            var audio = document.getElementById("miMusica");
+            audio.play();
+        }
+    </script>
+</body>
+</html>
