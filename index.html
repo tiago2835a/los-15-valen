@@ -6,6 +6,17 @@
     <title>Mis 15 Años - Valentina</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
+        .card-piscina {
+            border: 2px solid var(--bordo);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(128, 0, 32, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0); }
+        }
+        
         :root {
             --bordo: #800020; /* Color Bordó Principal */
             --dorado: #c5a059;
@@ -120,7 +131,16 @@
         <p>📅 <b>22 DE FEBRERO</b><br>🕗 20:30 HS</p>
         <p>📍 <b>Salón de Eventos</b><br>Calle Ficticia 123, Tu Ciudad</p>
         <a href="https://maps.google.com" target="_blank" class="btn">COMO LLEGAR</a>
+        
+<hr>
 
+        <div class="card" style="border: 2px solid var(--bordo);">
+            <div style="font-size: 3rem;">🏊‍♀️</div>
+            <div class="section-title" style="margin-top: 0;">Piscina</div>
+            <p>¡No olvides tu traje de baño! Tendremos habilitada la piscina durante el evento.</p>
+            <p style="font-weight: 600; color: var(--bordo);">Te recomendamos traer ropa extra y toalla para que disfrutes al máximo.</p>
+        </div>
+        
         <hr>
 
         <div class="section-title">Confirmación</div>
